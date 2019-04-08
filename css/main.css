@@ -1885,7 +1885,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e5532f;
+  background: #79bd3c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2891,6 +2891,9 @@ hr {
 }
 .menu .menu-item a {
   font-size: 16px;
+}
+#footer .footer-inner .copyright {
+  text-align: center;
 }
 .posts-expand .post-meta {
   font-size: 14px;

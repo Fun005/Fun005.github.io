@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[谈谈Object.create()]]></title>
+    <url>%2Fjavascript%E8%BF%9B%E9%98%B6%2F2019%2F04%2F08%2F%E8%B0%88%E8%B0%88Object-create.html</url>
+    <content type="text"><![CDATA[Object.create()一、首先放MDN上的定义： Object.create()方法创建一个新对象，使用现有的对象来提供新建对象的__proto__ 语法： 12&gt; Object.create(proto, [propertiesObject])&gt; 参数： proto ：新创建对象的原型对象。 propertiesObject 可选。如果没有指定为undefined ，则是要添加到新创建对象的可枚举属性（即其自身定义的属性，而不是其原型链上的枚举属性）对象的属性描述符以及相应的属性名称。这些属性对应的Object.defineProperties()的第二个参数。 返回值：一个新对象，带着指定的原型对象和属性。 例外：如果propertiesObject参数不是null或一个对象，则抛出一个TypeError异常。 二、个人理解Object.create(null)创建的是一个空对象，并且该对象上没有继承Object.prototype原型链上的属性或者方法，例如：toString(),hasOwnProperty()等方法。 三、MDN代码实践 var o; // 创建一个原型为null的空对象 o = Object.create(null); o = {} // 以字面量方式创建的空对象就相当于： o = Object.create(Object.prototype); o = Object.create(Object.prototype,{ ​ // foo会成为所创建对象的数据属性 ​ foo: { ​ writeable: true, ​ configurable: true, value: &apos;hello&apos; ​ }, ​ // bar 会成为所创建对象的访问器属性 ​ bar: { ​ configurable: false, ​ get: function() { return 10 }, ​ set: function(value) { ​ console.log(“Setting o.bar to “, value); ​ } ​ } }); function Constructor() {} o = new Constructor(); // 上面的一句就相当于： o = Object.create(Constructor.prototype); // 当然，如果在Constructor函数中有一些初始化代码，Object.create不能执行那些代码。 // 创建一个以另一个空对象为原型，且拥有一个属性p的对象 o = Object.create({}, { p: { value: 42 } }) // 省略了的属性特性默认为false，所以属性p是不可写、不可枚举、不可配置的： o.p = 24 o.p // 24 o.q = 12 for(var prop in o) { ​ console.log(prop) } // “q” delete o.p // false // 创建一个可写的、可枚举的、可配置的属性p o2 = Object.create({}, { ​ p: { ​ value: 42, ​ writeable: true, ​ configurable: true ​ } }) 四、Object.create(null)的使用场景为什么很多源码作者会使用Object.create(null)来初始化一个新对象呢？这是作者的习惯，还是一个最佳实践？ 其实都不是，这并不是作者不经思考随便用的，也不是javascript编程中的最佳实践，而是需要因地制宜，具体问题具体分析。 我们进一步比较一下Object.create(null)和{}创建控对象的区别： 在chrome打印如下： 从上图可以看到，使用create创建的对象，没有任何属性，显示No properties，我们可以把它当作一个非常纯净的map来使用，我们可以自己定义hasOwnProperty、toString方法，不管是有意还是不小心，我们完全不必担心会将原型链上的同名方法覆盖掉。举个例子： //Demo1: var a= {…省略很多属性和方法…}; //如果想要检查a是否存在一个名为toString的属性，你必须像下面这样进行检查： if(Object.prototype.hasOwnProperty.call(a,’toString’)){ ​ … } //为什么不能直接用a.hasOwnProperty(‘toString’)? //因为你可能给a添加了一个自定义的hasOwnProperty //你无法使用下面这种方式来进行判断,因为原型上的toString方法是存在的： if(a.toString){} //Demo2: var a=Object.create(null) //你可以直接使用下面这种方式判断，因为存在的属性，都将定义在a上面，除非手动指定原型： if(a.toString){} 另一个使用create(null)的理由是，在我们使用for..in循环的时候会遍历对象原型链上的属性，使用create(null)就不必再对属性进行检查了，当然，我们也可以直接使用Object.keys[]。 五、总结 你需要一个非常干净且高度可定制的对象当作数据字典的时候； 想节省hasOwnProperty带来的一丢丢性能损失并且可以偷懒少些一点代码的时候; 用Object.create(null)吧！其他时候，请用{}。]]></content>
+      <categories>
+        <category>javascript进阶</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>object</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[测试主题优化]]></title>
+    <url>%2Funcategorized%2F2019%2F04%2F08%2F%E6%B5%8B%E8%AF%95%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[测试发布文章]]></title>
+    <url>%2Ftest%2F2019%2F04%2F08%2F%E6%B5%8B%E8%AF%95%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0.html</url>
+    <content type="text"><![CDATA[新博客文章发布测试]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2Funcategorized%2F2019%2F02%2F12%2Fhello-world.html</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
