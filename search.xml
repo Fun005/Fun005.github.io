@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CSS去掉元素间隙]]></title>
+    <url>%2Fcss%2F2020%2F03%2F23%2FCSS%E5%8E%BB%E6%8E%89inline-block%E5%85%83%E7%B4%A0%E9%97%B4%E9%9A%99%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95.html</url>
+    <content type="text"><![CDATA[CSS去掉inline-block元素间隙的几种方法？间隙是怎么来的：间隙是由换行或者回车导致的；只要把标签写成一行或者标签没有空格，就不会出现间隙；去除方法： 方法一：元素间的间隙出现的原因，是元素标签之间的空格，把空格去掉间隙就会消失。123&lt;div&gt; &lt;span&gt;l111&lt;/span&gt;&lt;span&gt;l2222&lt;/span&gt;&lt;/div&gt; 方法二：利用HTML注释标签1234&lt;div class="demo"&gt; &lt;span&gt;l111&lt;/span&gt;&lt;!-- --&gt;&lt;span&gt;l222&lt;/span&gt;&lt;/div&gt; 方法三： 取消标签闭合123456&lt;div class="demo"&gt; &lt;span&gt;saf &lt;span&gt;1321h &lt;span&gt;35435 &lt;span&gt;32342&lt;/div&gt; 方法四： 在父容器上使用font-size:0;可以消除间隙1234567&lt;div class="demo"&gt; &lt;span&gt;1111&lt;/span&gt; &lt;span&gt;2222&lt;/span&gt; &lt;span&gt;3333&lt;/span&gt; &lt;span&gt;4444&lt;/span&gt;&lt;/div&gt;.demo &#123;font-size: 0;&#125;]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CSS Modules]]></title>
+    <url>%2Fcss%2F2020%2F03%2F23%2FCSS-Modules.html</url>
+    <content type="text"><![CDATA[CSS Modules1. 什么是CSS ModulesCSS模块化管理方案；它既不是官方标准，也不是浏览器的特性，而是在构建步骤（例如使用Webpack）中对CSS类名选择器限定作用域的一种方式（通过hash实现类似于命名空间的方法）。例如我们在buttons.js里引入buttons.css文件，并使用.btn的样式，在其他组件里是不会被.btn影响的，除非它也引入了buttons.css.2. CSS Modules的好处为什么我们需要CSS模块化。 CSS的规则都是全局的，任何一个组件的样式规则，都对整个页面有效。现在我们说组件式开发，随着工程的页面数量和复杂度的提升，大家都遇到过样式冲突问题，一般我们会采用一下几种方法： class名写长点、写独特点，减少冲突可能性 添加父元素选择器，限制CSS选择范围 重新命名class，这样比较保险 上面这些办法应用后，带来更多的问题： 全局样式冲突、污染 css选择器嵌套过深 代码冗余； 为了解决这些问题，我们由js模块化想到，能不能把CSS也进行模块化管理。CSS模块化的方案，主要有以下几种： ​ 1. 命名约定。比如BEM（Block Element Modifier），使用BEM规范来命名CSS，组织HTML中选择器的结构， 利于CSS代码的维护，使得代码结构更清晰，但是BEM也有不足，就是写出来的类名太长，看起来一大堆的不够优雅；没有打通js和css之间的选择器与变量(和CSS Modules相比)；我在项目中写的样式有很多BEM的思想 2. **CSS in JS**。不用CSS了，直接用JS写样式。代表是(styled-componentd)[https://github.com/styled-components/styled-components]。这种方式有很多好处，比如让CSS真正意义地写到JS里面、让标签更具有语意化、让样式也具备组件化思想等等，当然也有不够好的地方：样式代码大量重复、不能很好利用CSS预处理器以及，个人觉得CSS IN JS写起来很别扭，感觉很难受，我觉得css和js分离写起来才是最舒服的方式。 3. **用JS管理CSS**。利用JS编译CSS文件，让CSS也拥有模块化的便利，代表就是今天要说的CSS Modules。CM和第二点不一样，还是两者分离的形式，并且CM只需修改构建代码和使用模块依赖引入className的方式即可，还支持less和sass的语法，使用CSS Modules可以让组件className控制权转交给JS，我们不会去关心命名冲突污染等问题，同时可以灵活控制生成的命名。 3. 通过creact-react-app演示 基本使用：creact-react-app默认开启。（webpack.config.js）。css文件要以component.module.css命名，比如Button.module.css。 类名的使用：组件中的类名不会影响别的组件中的相同类名，比如在组件中（Button）可以使用像.button的名称来声明类名，而不必担心类名的冲突。渲染后的类名：Button_button__2LXQM，是一个随机hash值，用来确保具有相同名称的多个CSS Modules的唯一性。在Webpack的配置文件webpack.config.dev.js中，可以配置CSS Modules编译器如何重写类名，并且hash值是可选的。styles变量是一个JavaScript对象。另外styles下的类名必须上驼峰形式，比如className={styles.MyApp}，而className={styles.my-app}就会报错。有一点值得说的是，值得注意的是，如果你在CSS文件中编写了一些CSS，而在模板中没有使用它们（或错误的使用它们），Webpack将跳过生成输出任何未使用的CSS，从而能减少代码大小。 多类名的使用：通过模板字符串来写就行。也可以通过组合特性compose做到： composes: button; CSS Modules最大的特色之一就是“每个CSS代码都是应该用于特定的组件中，并且与项目的其他部分是隔离的”。那现在有个问题令，假如我要在多个地方使用相同的样式，怎么办，要写多次吗，怎么抽离和利用公共样式。方案就是刚刚的composes。比如在App.module.css中要引用Button.module.css中的.button中的样式代码、或者在组件中引用公共代码。可以把各个组件共用的样式放置在一个独立的文件中，比如common.css。然后在需要的地方调用。这么来看，composes是非常强大的，可以让你跳出CSS Modules局部作用域名的限制，在组件中调用共用样式，也就是在局部作用域调用全局作用域样式。 使用classnames： 虽然可以通过composes达到类名组合的效果，但是我就想写className=’primary white’，怎么办。也有办法，通过classnames 模块做到。npm install classnames –save。(classnames 官方文档)[https://github.com/JedWatson/classnames]。 组合选择器的使用 选择器的作用域： :local (局部作用域名，相当于组件中的本地选择器)、:global(全局作用域名)采用:global声明的全局选择器，和我们平时声明类名无差异，而且也不需要遵循CSS Modules的类名命名规则，并且在模板中调用的时候，也不需要使用styles.xxx这样的方式，可以直接在className中引用类名。比如示例中的className=&quot;app-logo&quot;。还可以跨组件的使用，比如我们在Button组件的Button.module.css中使用:global声明了一个全局的.button样式 标签元素和属性选择器的使用:在CSS Modles中，类名是被限定在定义它的组件中使用（除非使用了:global标识的类），但对于HTML的标签元素和属性选择器是不受影响的。Button组件 CSS Modules中使用id声明的样式不会被运用到元素上. 4. 结语CM还有很多功能，比如依赖管理、共享变量、代码压缩方面都有很好的表现，但是由于我也没有在具体项目中全面应用CM，所以大家有兴趣可以自己去研究。]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CSS实现毛玻璃效果]]></title>
     <url>%2Fcss%2F2019%2F07%2F14%2FCSS%E5%AE%9E%E7%8E%B0%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9C.html</url>
     <content type="text"><![CDATA[在family一次版本迭代中，产品小哥给出了这样一个需求，更换头像背景的模糊效果，也就是所谓的毛玻璃效果。以前没做过这种，怎么办？当然是搜索引擎，不懂就去搜。 发现有个filter属性，给它设置blur(x)即可。 主要思路是给相关元素设置伪元素，然后设置伪元素的背景+filter：blur(x)。 html如下： &lt;div class=&quot;main&quot;&gt; &lt;button type=&quot;&quot;&gt;点我&lt;/button&gt; &lt;div class=&quot;content&quot;&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;p&gt;用CSS制作毛玻璃效果（高斯模糊效果）&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; CSS如下： &lt;style&gt; .main { position: relative; background: hsla(0, 0%, 100%, .3); overflow: hidden; width: 800px; height: 500px; } .main::before { content: &apos;&apos;; position: absolute; top: 0; right: 0; bottom: 0; left: 0; filter: blur(20px); background: url(&apos;./mmexport1546413607115.jpg&apos;) no-repeat; background-size: 100% 100%; margin: -30px; z-index: -1; } p { color: #fff; } &lt;/style&gt; 效果如下： 但具体到需求，头像不是固定的图，没办法通过css设置伪元素背景（或者说我不知道怎么样动态给伪元素设置背景），这就头大了。无意间发现张鑫旭大神有文章讨论过这个，他文章里采用的方法是用两个img标签，然后设置模糊效果。原文链接：https://www.zhangxinxu.com/wordpress/2013/11/css-svg-image-blur/ 这样也能做到同样的效果，这里就不给出代码了，文章里有。]]></content>
