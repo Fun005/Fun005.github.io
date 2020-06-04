@@ -563,7 +563,7 @@
 <h3 id="方法一：元素间的间隙出现的原因，是元素标签之间的空格，把空格去掉间隙就会消失。"><a href="#方法一：元素间的间隙出现的原因，是元素标签之间的空格，把空格去掉间隙就会消失。" class="headerlink" title="方法一：元素间的间隙出现的原因，是元素标签之间的空格，把空格去掉间隙就会消失。"></a>方法一：元素间的间隙出现的原因，是元素标签之间的空格，把空格去掉间隙就会消失。</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>l111<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>l2222<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="方法二：利用HTML注释标签"><a href="#方法二：利用HTML注释标签" class="headerlink" title="方法二：利用HTML注释标签"></a>方法二：利用<code>HTML</code>注释标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>l111<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    --&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>l222<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="方法三：-取消标签闭合"><a href="#方法三：-取消标签闭合" class="headerlink" title="方法三： 取消标签闭合"></a>方法三： 取消标签闭合</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>saf</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1321h</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>35435</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>32342</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="方法四：-在父容器上使用font-size-0-可以消除间隙"><a href="#方法四：-在父容器上使用font-size-0-可以消除间隙" class="headerlink" title="方法四： 在父容器上使用font-size:0;可以消除间隙"></a>方法四： 在父容器上使用<code>font-size:0;</code>可以消除间隙</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1111<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2222<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3333<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>4444<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">.demo &#123;font-size: 0;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法四：-在父容器上使用font-size-0-可以消除间隙"><a href="#方法四：-在父容器上使用font-size-0-可以消除间隙" class="headerlink" title="方法四： 在父容器上使用font-size:0;可以消除间隙"></a>方法四： 在父容器上使用<code>font-size:0;</code>可以消除间隙</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span>="<span class="title">demo</span>"&gt;</span></span><br><span class="line"><span class="class">    &lt;span&gt;1111&lt;/span&gt;</span></span><br><span class="line"><span class="class">    &lt;span&gt;2222&lt;/span&gt;</span></span><br><span class="line"><span class="class">    &lt;span&gt;3333&lt;/span&gt;</span></span><br><span class="line"><span class="class">    &lt;span&gt;4444&lt;/span&gt;</span></span><br><span class="line"><span class="class">&lt;/div&gt;</span></span><br><span class="line"><span class="class">.<span class="title">demo</span> &#123;</span>font-size: <span class="number">0</span>;&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -599,6 +599,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/H5/2020/06/04/安卓下H5-虚拟键盘出现挡住内容（输入框、按钮）.html" rel="prev" title="安卓H5虚拟键盘出现挡住内容">
+                <i class="fa fa-chevron-left"></i> 安卓H5虚拟键盘出现挡住内容
+              </a>
             
           </div>
 
@@ -682,7 +686,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -703,7 +707,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -728,7 +734,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[安卓H5虚拟键盘出现挡住内容]]></title>
+    <url>%2FH5%2F2020%2F06%2F04%2F%E5%AE%89%E5%8D%93%E4%B8%8BH5-%E8%99%9A%E6%8B%9F%E9%94%AE%E7%9B%98%E5%87%BA%E7%8E%B0%E6%8C%A1%E4%BD%8F%E5%86%85%E5%AE%B9%EF%BC%88%E8%BE%93%E5%85%A5%E6%A1%86%E3%80%81%E6%8C%89%E9%92%AE%EF%BC%89.html</url>
+    <content type="text"><![CDATA[问题描述 我们在进行H5开发时，经常遇到这种情况：如果输入框或者按钮，在页面下方，当我们唤起软键盘时，系统弹出的虚拟键盘就会将输入框或按钮挡住。这个只有在Android 系统下会有这个问题，iOS 系统会自动将整个页面上移动。 解决办法 我们可以通过 Element.scrollIntoViewIfNeeded() 这个方法来解决这个问题。这个方法的作用是，将不在浏览器窗口的可见区域内的元素滚动到浏览器窗口的可见区域。执行后如果当前元素在视口中不可见，则会滚动浏览器窗口或容器元素，最终让它可见。如果当前元素在视口中已经是可见的，这个方法什么也不做。 代码示例 这样当输入框、按钮被点击，软键盘吊起后，调用它的 scrollIntoViewIfNeeded() 方法，保证输入框可见。（延迟一定的毫秒延迟是因为有些 Android 手机键盘出现的比较慢） 注意事项 值得注意的是，这个方法有兼容性问题，因为它不属于任何规范，是一种WebKit专有的方法。由于它是非标准方法，因此要慎重在生产环境使用。另外，此方法是标准的Element.scrollIntoView()方法的专有变体，因此更推荐使用Element.scrollIntoView()方法，有更好的兼容性。而且注意判断是不是在IOS系统，IOS系统执行这个方法， 页面会滚动，光标就不在输入框里了，所以需要做下判断不能是ios系统 补充scrollIntoViewIfNeeded方法虽然兼容性还不够好，但是基本所有H5支持，只要提前做下判断是否有这个方法就好了，所以scrollIntoView()和scrollIntoViewIfNeeded()都要调用好一些，而且注意一下函数的参数，展示会更加友好；el.scrollIntoView({ block: ‘center’ })typeof el.scrollIntoViewIfNeeded === ‘function’ &amp;&amp; el.scrollIntoViewIfNeeded(true); 参考链接： https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollIntoViewIfNeeded]]></content>
+      <categories>
+        <category>H5</category>
+      </categories>
+      <tags>
+        <tag>H5</tag>
+        <tag>兼容性</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CSS去掉元素间隙]]></title>
     <url>%2Fcss%2F2020%2F03%2F23%2FCSS%E5%8E%BB%E6%8E%89inline-block%E5%85%83%E7%B4%A0%E9%97%B4%E9%9A%99%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95.html</url>
     <content type="text"><![CDATA[CSS去掉inline-block元素间隙的几种方法？间隙是怎么来的：间隙是由换行或者回车导致的；只要把标签写成一行或者标签没有空格，就不会出现间隙；去除方法： 方法一：元素间的间隙出现的原因，是元素标签之间的空格，把空格去掉间隙就会消失。123&lt;div&gt; &lt;span&gt;l111&lt;/span&gt;&lt;span&gt;l2222&lt;/span&gt;&lt;/div&gt; 方法二：利用HTML注释标签1234&lt;div class="demo"&gt; &lt;span&gt;l111&lt;/span&gt;&lt;!-- --&gt;&lt;span&gt;l222&lt;/span&gt;&lt;/div&gt; 方法三： 取消标签闭合123456&lt;div class="demo"&gt; &lt;span&gt;saf &lt;span&gt;1321h &lt;span&gt;35435 &lt;span&gt;32342&lt;/div&gt; 方法四： 在父容器上使用font-size:0;可以消除间隙1234567&lt;div class="demo"&gt; &lt;span&gt;1111&lt;/span&gt; &lt;span&gt;2222&lt;/span&gt; &lt;span&gt;3333&lt;/span&gt; &lt;span&gt;4444&lt;/span&gt;&lt;/div&gt;.demo &#123;font-size: 0;&#125;]]></content>
